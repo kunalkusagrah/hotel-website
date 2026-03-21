@@ -44,7 +44,7 @@ export default function WhatsAppFloat() {
         </span>
 
         <span className="rounded-full bg-white text-[#25D366] px-2.5 py-1 text-[10px] font-semibold tracking-[0.18em] uppercase shadow-md border border-[#25D366]/20 leading-none transition-all duration-300 group-hover:translate-y-0.5">
-          Need Help?
+          Book now!
         </span>
       </div>
     </motion.a>

@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Users, Maximize2, Wifi, ArrowRight, Star, ChevronLeft, ChevronRight, Check } from 'lucide-react';
 import { ROOMS } from '@/utils/constants';
 import { useInView } from '@/hooks/useInView';
+import { openWhatsAppBooking } from '@/utils/contact';
 
 function RoomCard({ room, index, onBook }) {
   const [ref, inView] = useInView();
@@ -135,9 +136,9 @@ export default function Rooms() {
               transition={{ duration: 0.7, delay: 0.1 }}
               className="section-title text-mahogany-950"
             >
-              Our Rooms
-              <br />
-              <span className="font-light italic">&amp; Suites</span>
+              Our Rooms 
+              {/* <br /> */}
+              <span className="font-light italic"> &amp; Suites</span>
             </motion.h2>
           </div>
           <motion.p
@@ -175,12 +176,12 @@ export default function Rooms() {
         </div>
 
         {/* View All */}
-        <div className="text-center mt-14">
+        {/* <div className="text-center mt-14">
           <button className="btn-outline">
             View All Accommodations
             <ArrowRight size={16} />
           </button>
-        </div>
+        </div> */}
       </div>
 
       {/* Room Detail Modal */}
@@ -234,12 +235,12 @@ export default function Rooms() {
                   </div>
                   <button
                     onClick={() => {
+                      openWhatsAppBooking(`Hi, I am interested in booking the ${selectedRoom.name} at INR ${selectedRoom.price.toLocaleString()} per night. Please share availability.`);
                       setSelectedRoom(null);
-                      document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' });
                     }}
                     className="btn-primary"
                   >
-                    Book This Room
+                    Contact to Book
                     <ArrowRight size={16} />
                   </button>
                 </div>

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Clock, BarChart2, ArrowRight, MapPin } from 'lucide-react';
 import { ACTIVITIES } from '@/utils/constants';
 import { useInView } from '@/hooks/useInView';
+import { openWhatsAppBooking } from '@/utils/contact';
 
 const DIFFICULTY_COLOR = {
   Easy: 'text-green-500 bg-green-50',
@@ -65,7 +66,10 @@ function ActivityCard({ item, index }) {
           </div>
         </div>
 
-        <button className="font-sans text-sm tracking-widest uppercase text-mahogany-900 hover:text-gold-600 transition-colors flex items-center gap-2 group/btn border-t border-cream-200 pt-4">
+        <button
+          onClick={() => openWhatsAppBooking(`Hi, I am interested in booking the ${item.name} activity (${item.duration}, ${item.difficulty} difficulty). Please share details and availability.`)}
+          className="font-sans text-sm tracking-widest uppercase text-mahogany-900 hover:text-gold-600 transition-colors flex items-center gap-2 group/btn border-t border-cream-200 pt-4"
+        >
           <span>Book Experience</span>
           <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
         </button>
@@ -143,7 +147,10 @@ export default function Activities() {
                 Manali — Gateway to the <em className="font-semibold">Himalayas</em>
               </h3>
             </div>
-            <button className="btn-ghost shrink-0">
+            <button
+              onClick={() => openWhatsAppBooking('Hi, I would like to explore all the adventure activities available at The Himalayan Haven. Please share details and packages.')}
+              className="btn-ghost shrink-0"
+            >
               <MapPin size={15} />
               Explore All Activities
             </button>

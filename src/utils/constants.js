@@ -9,15 +9,19 @@ export const HOTEL = {
   email: 'stay@himalayanhaven.in',
   checkIn: '2:00 PM',
   checkOut: '12:00 PM',
+  // Set to a YouTube URL (e.g. 'https://www.youtube.com/watch?v=ID')
+  // or a direct MP4 URL to enable the hotel film. Leave empty to show Coming Soon.
+  filmUrl: '',
 };
 
 export const NAV_LINKS = [
   { id: 'home', label: 'Home', href: '#home' },
   { id: 'rooms', label: 'Rooms', href: '#rooms' },
-  { id: 'dining', label: 'Dining', href: '#dining' },
-  { id: 'activities', label: 'Activities', href: '#activities' },
   { id: 'gallery', label: 'Gallery', href: '#gallery' },
-  { id: 'about', label: 'About', href: '#about' },
+  { id: 'testimonials', label: 'Reviews', href: '#testimonials' },
+  { id: 'reels', label: 'Reels', href: '#reels' },
+  { id: 'contact', label: 'Contact', href: '#contact' },
+  { id: 'about-brief', label: 'About', href: '#about-brief' },
 ];
 
 export const ROOMS = [
@@ -263,3 +267,32 @@ export const MARQUEE_ITEMS = [
   'Bonfire Evenings',
   'Yoga & Wellness',
 ];
+
+export const INSTA_REELS = [
+  {
+    id: 1,
+    title: 'Sunrise Over Manali',
+    video: 'https://samplelib.com/lib/preview/mp4/sample-5s.mp4',
+    poster: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80',
+    caption: 'Golden mornings at 2,050m',
+  },
+  {
+    id: 2,
+    title: 'Infinity Pool Moments',
+    video: 'https://samplelib.com/lib/preview/mp4/sample-10s.mp4',
+    poster: 'https://images.unsplash.com/photo-1540541338287-41700207dee6?w=800&q=80',
+    caption: 'Where luxury meets the mountains',
+  },
+  {
+    id: 3,
+    title: 'Evening Bonfire Vibes',
+    video: 'https://samplelib.com/lib/preview/mp4/sample-15s.mp4',
+    poster: 'https://images.unsplash.com/photo-1476041800959-2f6bb412c8ce?w=800&q=80',
+    caption: 'Nights of warmth and stories',
+  },
+];
+
+export const HOTEL_LOCATION = {
+  mapQuery: 'The Himalayan Haven, Old Manali Road, Manali',
+  googleMapsLink: 'https://www.google.com/maps/search/?api=1&query=The+Himalayan+Haven+Old+Manali+Road+Manali',
+};

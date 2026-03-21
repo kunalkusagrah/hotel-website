@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from '@/hooks/useInView';
 import { AMENITIES } from '@/utils/constants';
+import { openWhatsAppBooking } from '@/utils/contact';
 
 export default function Amenities() {
   const [headerRef, headerInView] = useInView();
@@ -74,7 +75,10 @@ function AmenityCard({ item, index }) {
         {item.description}
       </p>
       <div className="mt-6 h-px bg-cream-200 group-hover:bg-cream-700/30 transition-colors" />
-      <button className="mt-4 font-sans text-xs tracking-widest uppercase text-mahogany-400 group-hover:text-gold-400 transition-colors hover:underline">
+      <button
+        onClick={() => openWhatsAppBooking(`Hi, I am interested in learning more about the ${item.title} at The Himalayan Haven. Please provide more details.`)}
+        className="mt-4 font-sans text-xs tracking-widest uppercase text-mahogany-400 group-hover:text-gold-400 transition-colors hover:underline"
+      >
         Learn More →
       </button>
     </motion.div>

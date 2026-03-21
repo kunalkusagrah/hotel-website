@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, ArrowRight, Play } from 'lucide-react';
 import { HOTEL } from '@/utils/constants';
+import { openWhatsAppBooking } from '@/utils/contact';
 
 const SLIDES = [
   {
@@ -150,10 +151,10 @@ export default function Hero() {
             className="flex flex-wrap gap-4 mt-10"
           >
             <button
-              onClick={() => document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => openWhatsAppBooking('Hi, I want to book a stay from your website. Please share room options and best rates.')}
               className="btn-primary text-base px-10 py-5"
             >
-              Book Now
+              Contact to Book
               <ArrowRight size={18} />
             </button>
             <button
@@ -240,14 +241,32 @@ export default function Hero() {
               onClick={(e) => e.stopPropagation()}
               className="relative w-full max-w-4xl aspect-video rounded-2xl overflow-hidden bg-mahogany-900 flex items-center justify-center"
             >
-              <div className="text-center text-cream-300">
-                <Play size={48} className="mx-auto mb-4 opacity-50" />
-                <p className="font-display text-2xl">Hotel Film Coming Soon</p>
-                <p className="text-sm mt-2 opacity-60">Experience the magic of Himalayan Haven</p>
-              </div>
+              {HOTEL.filmUrl ? (
+                HOTEL.filmUrl.includes('youtube.com') || HOTEL.filmUrl.includes('youtu.be') ? (
+                  <iframe
+                    src={`https://www.youtube.com/embed/${HOTEL.filmUrl.match(/(?:v=|youtu\.be\/)([^&?/]+)/)?.[1]}?autoplay=1&rel=0`}
+                    title="Hotel Film"
+                    allow="autoplay; fullscreen"
+                    className="w-full h-full"
+                  />
+                ) : (
+                  <video
+                    src={HOTEL.filmUrl}
+                    autoPlay
+                    controls
+                    className="w-full h-full object-cover"
+                  />
+                )
+              ) : (
+                <div className="text-center text-cream-300">
+                  <Play size={48} className="mx-auto mb-4 opacity-50" />
+                  <p className="font-display text-2xl">Hotel Film Coming Soon</p>
+                  <p className="text-sm mt-2 opacity-60">Experience the magic of Himalayan Haven</p>
+                </div>
+              )}
               <button
                 onClick={() => setShowVideo(false)}
-                className="absolute top-4 right-4 text-cream-200 hover:text-cream-50 bg-mahogany-800 rounded-full p-2"
+                className="absolute top-4 right-4 text-cream-200 hover:text-cream-50 bg-mahogany-800 rounded-full p-2 z-10"
               >
                 ✕
               </button>

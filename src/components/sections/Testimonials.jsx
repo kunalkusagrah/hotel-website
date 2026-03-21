@@ -15,7 +15,7 @@ export default function Testimonials() {
   const t = TESTIMONIALS[current];
 
   return (
-    <section className="py-24 lg:py-32 bg-cream-50 relative overflow-hidden">
+    <section id="testimonials" className="py-24 lg:py-32 bg-cream-50 relative overflow-hidden">
       {/* Decorative */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-gold-500/5 blur-3xl pointer-events-none" />
 

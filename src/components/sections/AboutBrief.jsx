@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from '@/hooks/useInView';
 import { STATS } from '@/utils/constants';
+import { openWhatsAppBooking } from '@/utils/contact';
 
 export default function AboutBrief() {
   const [leftRef, leftInView] = useInView();
@@ -93,14 +94,14 @@ export default function AboutBrief() {
 
             <div className="flex flex-wrap gap-4 mb-12">
               <button
-                onClick={() => document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => openWhatsAppBooking('Hi, I am planning my stay at The Himalayan Haven. Please guide me with available packages.')}
                 className="btn-ghost"
               >
-                Plan Your Stay
+                Contact Us to Plan Stay
               </button>
-              <button className="font-sans text-sm tracking-widest uppercase text-cream-200 hover:text-gold-400 transition-colors flex items-center gap-2 border-b border-cream-600 pb-1 hover:border-gold-400">
+              {/* <button className="font-sans text-sm tracking-widest uppercase text-cream-200 hover:text-gold-400 transition-colors flex items-center gap-2 border-b border-cream-600 pb-1 hover:border-gold-400">
                 Our Story →
-              </button>
+              </button> */}
             </div>
 
             {/* Stats */}

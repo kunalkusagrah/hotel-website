@@ -1,21 +1,35 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, Instagram, Facebook, Twitter, Youtube, ArrowUpRight } from 'lucide-react';
 import { HOTEL, NAV_LINKS } from '@/utils/constants';
 
 const FOOTER_LINKS = {
-  'Explore': ['Our Story', 'Rooms & Suites', 'Dining', 'Spa & Wellness', 'Gallery'],
-  'Activities': ['Trekking', 'River Rafting', 'Paragliding', 'Skiing', 'Yoga & Meditation'],
-  'Information': ['Book a Stay', 'Gift Vouchers', 'Events & Weddings', 'Corporate Retreats', 'Cancellation Policy'],
+  'Quick Menu': NAV_LINKS,
+  'Contact': [
+    { label: 'WhatsApp Booking', href: `https://wa.me/${HOTEL.phone.replace(/\D/g, '')}` },
+    { label: 'Call Front Desk', href: `tel:${HOTEL.phone.replace(/\s+/g, '')}` },
+    { label: 'Email Reservations', href: `mailto:${HOTEL.email}` },
+  ],
+  'Policies': [
+    { label: 'Privacy Policy', path: '/privacy' },
+    { label: 'Terms of Service', path: '/terms' },
+    { label: 'Cookie Policy', path: '/cookies' },
+  ],
 };
 
 const SOCIAL = [
-  { icon: Instagram, label: 'Instagram', href: '#' },
-  { icon: Facebook, label: 'Facebook', href: '#' },
-  { icon: Twitter, label: 'X / Twitter', href: '#' },
-  { icon: Youtube, label: 'YouTube', href: '#' },
+  { icon: Instagram, label: 'Instagram', href: 'https://www.instagram.com/' },
+  { icon: Facebook, label: 'Facebook', href: 'https://www.facebook.com/' },
+  { icon: Twitter, label: 'X / Twitter', href: 'https://twitter.com/' },
+  { icon: Youtube, label: 'YouTube', href: 'https://www.youtube.com/' },
 ];
 
 export default function Footer() {
+  const handleNav = (href) => {
+    const id = href.replace('#', '');
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <footer className="bg-mahogany-950 text-cream-200 relative overflow-hidden">
       {/* Top Decorative Wave */}
@@ -82,23 +96,51 @@ export default function Footer() {
                 {heading}
               </h4>
               <ul className="space-y-3">
-                {links.map((link) => (
-                  <li key={link}>
-                    <a
-                      href="#"
-                      className="font-sans text-sm text-cream-400 hover:text-gold-400 transition-colors duration-200 flex items-center gap-1 group"
-                    >
-                      <span className="group-hover:translate-x-1 transition-transform duration-200">{link}</span>
-                    </a>
-                  </li>
-                ))}
+                {links.map((link) => {
+                  if (heading === 'Quick Menu') {
+                    return (
+                      <li key={link.id}>
+                        <button
+                          onClick={() => handleNav(link.href)}
+                          className="font-sans text-sm text-cream-400 hover:text-gold-400 transition-colors duration-200 flex items-center gap-1 group"
+                        >
+                          <span className="group-hover:translate-x-1 transition-transform duration-200">{link.label}</span>
+                        </button>
+                      </li>
+                    );
+                  }
+
+                  if (heading === 'Policies' && link.path) {
+                    return (
+                      <li key={link.label}>
+                        <Link
+                          to={link.path}
+                          className="font-sans text-sm text-cream-400 hover:text-gold-400 transition-colors duration-200 flex items-center gap-1 group"
+                        >
+                          <span className="group-hover:translate-x-1 transition-transform duration-200">{link.label}</span>
+                        </Link>
+                      </li>
+                    );
+                  }
+
+                  return (
+                    <li key={link.label}>
+                      <a
+                        href={link.href}
+                        className="font-sans text-sm text-cream-400 hover:text-gold-400 transition-colors duration-200 flex items-center gap-1 group"
+                      >
+                        <span className="group-hover:translate-x-1 transition-transform duration-200">{link.label}</span>
+                      </a>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ))}
         </div>
 
         {/* Newsletter */}
-        <div className="border border-cream-700/30 rounded-2xl p-5 sm:p-8 mb-16 bg-mahogany-900/30 backdrop-blur-sm">
+        {/* <div className="border border-cream-700/30 rounded-2xl p-5 sm:p-8 mb-16 bg-mahogany-900/30 backdrop-blur-sm">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="w-full md:w-auto">
               <div className="font-script text-gold-400 text-xl mb-1">Stay Connected</div>
@@ -117,7 +159,7 @@ export default function Footer() {
               </button>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Bottom Bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-cream-800/30">
@@ -125,11 +167,15 @@ export default function Footer() {
             © {new Date().getFullYear()} {HOTEL.name}. All Rights Reserved.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
-            {['Privacy Policy', 'Terms of Service', 'Cookie Policy'].map((item) => (
-              <a key={item} href="#" className="font-sans text-xs text-cream-600 hover:text-cream-300 transition-colors">
-                {item}
-              </a>
-            ))}
+            <Link to="/privacy" className="font-sans text-xs text-cream-600 hover:text-cream-300 transition-colors">
+              Privacy Policy
+            </Link>
+            <Link to="/terms" className="font-sans text-xs text-cream-600 hover:text-cream-300 transition-colors">
+              Terms of Service
+            </Link>
+            <Link to="/cookies" className="font-sans text-xs text-cream-600 hover:text-cream-300 transition-colors">
+              Cookie Policy
+            </Link>
           </div>
         </div>
       </div>

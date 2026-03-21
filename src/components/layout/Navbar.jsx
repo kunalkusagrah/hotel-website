@@ -1,9 +1,13 @@
 import { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Phone } from 'lucide-react';
 import { NAV_LINKS, HOTEL } from '@/utils/constants';
+import { openWhatsAppBooking } from '@/utils/contact';
 
 export default function Navbar() {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -12,20 +16,22 @@ export default function Navbar() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 60);
 
-      // Active section detection
-      const sections = NAV_LINKS.map((l) => l.id);
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sections[i]);
-        if (el && window.scrollY + 120 >= el.offsetTop) {
-          setActiveSection(sections[i]);
-          break;
+      // Active section detection (only on home page)
+      if (location.pathname === '/') {
+        const sections = NAV_LINKS.map((l) => l.id);
+        for (let i = sections.length - 1; i >= 0; i--) {
+          const el = document.getElementById(sections[i]);
+          if (el && window.scrollY + 120 >= el.offsetTop) {
+            setActiveSection(sections[i]);
+            break;
+          }
         }
       }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [location.pathname]);
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : '';
@@ -36,8 +42,24 @@ export default function Navbar() {
 
   const handleNav = (href) => {
     const id = href.replace('#', '');
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
     setMobileOpen(false);
+
+    // If on a policy page, navigate to home first
+    if (location.pathname !== '/') {
+      navigate('/');
+      // Scroll after a brief delay to allow page to load
+      setTimeout(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } else {
+      // If on home page, scroll directly
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleContactBooking = () => {
+    setMobileOpen(false);
+    openWhatsAppBooking('Hi, I want to book a stay at The Himalayan Haven. Please share available rooms and pricing.');
   };
 
   return (
@@ -112,14 +134,14 @@ export default function Navbar() {
               </button>
             ))}
             <button
-              onClick={() => handleNav('#booking')}
+              onClick={handleContactBooking}
               className={`font-sans text-sm tracking-widest uppercase px-6 py-2.5 rounded-full border transition-all duration-300 ${
                 scrolled
                   ? 'border-mahogany-900 text-mahogany-900 hover:bg-mahogany-900 hover:text-cream-50'
                   : 'border-cream-50/70 text-cream-50 hover:bg-cream-50 hover:text-mahogany-900'
               }`}
             >
-              Book Now
+              Contact to Book
             </button>
           </div>
 
@@ -173,10 +195,10 @@ export default function Navbar() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
-              onClick={() => handleNav('#booking')}
+              onClick={handleContactBooking}
               className="mt-12 btn-ghost"
             >
-              Book Now
+              Contact to Book
             </motion.button>
 
             <div className="mt-8 flex items-center gap-2 text-cream-400 text-sm">

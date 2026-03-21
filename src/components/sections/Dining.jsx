@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Clock, ArrowRight } from 'lucide-react';
 import { DINING } from '@/utils/constants';
 import { useInView } from '@/hooks/useInView';
+import { openWhatsAppBooking } from '@/utils/contact';
 
 function DiningCard({ item, index }) {
   const [ref, inView] = useInView();
@@ -40,7 +41,10 @@ function DiningCard({ item, index }) {
           <p className="font-sans text-sm text-cream-300 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 max-h-0 group-hover:max-h-24 overflow-hidden">
             {item.description}
           </p>
-          <button className="mt-4 opacity-0 group-hover:opacity-100 transition-all duration-500 font-sans text-xs tracking-widest uppercase text-gold-400 flex items-center gap-1 hover:gap-2">
+          <button
+            onClick={() => openWhatsAppBooking(`Hi, I am interested in dining at ${item.name} (${item.type}). Please share the menu and reservation details.`)}
+            className="mt-4 opacity-0 group-hover:opacity-100 transition-all duration-500 font-sans text-xs tracking-widest uppercase text-gold-400 flex items-center gap-1 hover:gap-2"
+          >
             View Menu <ArrowRight size={12} />
           </button>
         </div>
@@ -109,10 +113,16 @@ export default function Dining() {
             </h3>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 shrink-0">
-            <button className="btn-ghost">
+            <button
+              onClick={() => openWhatsAppBooking('Hi, I would like to make a reservation at Peaks restaurant. Please share availability and pricing.')}
+              className="btn-ghost"
+            >
               Make a Reservation
             </button>
-            <button className="font-sans text-sm tracking-widest uppercase text-cream-300 hover:text-gold-400 transition-colors border-b border-cream-700 pb-1 hover:border-gold-400">
+            <button
+              onClick={() => openWhatsAppBooking('Hi, could you share the menus for all dining venues at The Himalayan Haven?')}
+              className="font-sans text-sm tracking-widest uppercase text-cream-300 hover:text-gold-400 transition-colors border-b border-cream-700 pb-1 hover:border-gold-400"
+            >
               View Menus →
             </button>
           </div>
