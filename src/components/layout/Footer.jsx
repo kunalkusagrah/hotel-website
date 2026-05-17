@@ -18,10 +18,8 @@ const FOOTER_LINKS = {
 };
 
 const SOCIAL = [
-  { icon: Instagram, label: 'Instagram', href: 'https://www.instagram.com/' },
-  { icon: Facebook, label: 'Facebook', href: 'https://www.facebook.com/' },
-  { icon: Twitter, label: 'X / Twitter', href: 'https://twitter.com/' },
-  { icon: Youtube, label: 'YouTube', href: 'https://www.youtube.com/' },
+  { icon: Instagram, label: 'Instagram', href: 'https://www.instagram.com/snowlineheights/' },
+  { icon: Facebook, label: 'Facebook', href: 'https://www.instagram.com/snowlineheights/' },
 ];
 
 export default function Footer() {
