@@ -1,12 +1,12 @@
 // Hotel Data Constants
 
 export const HOTEL = {
-  name: 'The Himalayan Haven',
+  name: 'The Snowline Heights',
   tagline: 'Luxury Reimagined in the Himalayas',
   script: 'Rich & Serene',
-  address: 'Old Manali Road, Manali, Himachal Pradesh 175131',
-  phone: '+91 98765 43210',
-  email: 'stay@himalayanhaven.in',
+  address: 'Rangiri, Manali, Himachal Pradesh 175131',
+  phone: '+91 8588924855',
+  email: 'stay@snowlineheights.in',
   checkIn: '2:00 PM',
   checkOut: '12:00 PM',
   // Set to a YouTube URL (e.g. 'https://www.youtube.com/watch?v=ID')
@@ -38,7 +38,7 @@ export const ROOMS = [
     tag: 'Best Seller',
     color: 'from-forest-800 to-forest-900',
     accent: '#54a558',
-    image: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80',
+    image: '/images/Room-1.jpeg',
   },
   {
     id: 2,
@@ -53,7 +53,7 @@ export const ROOMS = [
     tag: 'Most Luxurious',
     color: 'from-mahogany-700 to-mahogany-900',
     accent: '#c94830',
-    image: 'https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=800&q=80',
+    image: '/images/Room-2.jpeg',
   },
   {
     id: 3,
@@ -68,7 +68,7 @@ export const ROOMS = [
     tag: 'Most Popular',
     color: 'from-cream-600 to-cream-800',
     accent: '#a8845a',
-    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80',
+    image: '/images/Room-3.jpeg',
   },
   {
     id: 4,
@@ -83,7 +83,7 @@ export const ROOMS = [
     tag: 'Unique Experience',
     color: 'from-slate-700 to-slate-900',
     accent: '#475569',
-    image: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80',
+    image: '/images/Room-4.jpeg',
   },
 ];
 
@@ -232,7 +232,7 @@ export const TESTIMONIALS = [
     name: 'Yuki Tanaka',
     origin: 'Tokyo, Japan',
     rating: 5,
-    text: 'I have stayed at many luxury resorts worldwide but The Himalayan Haven stands apart. The warmth of the staff, the authenticity of the experience, and the breathtaking landscape—unforgettable.',
+    text: 'I have stayed at many luxury resorts worldwide but The Snowline Heights stands apart. The warmth of the staff, the authenticity of the experience, and the breathtaking landscape—unforgettable.',
     stay: 'Alpine Retreat, March 2026',
     avatar: 'https://i.pravatar.cc/80?img=9',
   },
@@ -293,6 +293,6 @@ export const INSTA_REELS = [
 ];
 
 export const HOTEL_LOCATION = {
-  mapQuery: 'The Himalayan Haven, Old Manali Road, Manali',
+  mapQuery: 'The Snowline Heights, Old Manali Road, Manali',
   googleMapsLink: 'https://www.google.com/maps/search/?api=1&query=The+Himalayan+Haven+Old+Manali+Road+Manali',
 };
